@@ -1,0 +1,24 @@
+{
+  "name": "jokebot",
+  "version": "1.0.0",
+  "description": "Slack bot that tells random jokes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/izzydoesit/jokebot.git"
+  },
+  "author": "Israel D. Matos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/izzydoesit/jokebot/issues"
+  },
+  "homepage": "https://github.com/izzydoesit/jokebot#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "slackbots": "^1.1.0"
+  }
+}
