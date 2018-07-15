@@ -19,6 +19,7 @@
   "homepage": "https://github.com/izzydoesit/jokebot#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "dotenv": "^6.0.0",
     "slackbots": "^1.1.0"
   }
 }
