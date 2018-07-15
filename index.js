@@ -28,19 +28,18 @@ bot.on('message', data => {
     return;
   }
   handleMessage(data.text);
-  console.log('MESSAGE:', data)
 })
 
 handleMessage = (message) => {
-  switch (true) {
-    case / chucknorris/.test(message):
-      console.log(message, '<= message')
-      chuckJoke();
-    case / yom[a|o]m+a/.test(message):
-      yoMama();
-    default:
-      randomComment();
-  }
+  if (message.includes(' chucknorris')) {
+    chuckJoke();
+  } else if (message.match(' yomama')) {
+    yoMamaJoke();
+  } else if (message.match(' random')) {
+    randomJoke();
+  } else if (message.match(' help')) {
+    runHelp();
+  }   
 }
 
 // Tell a Chuck Norris
@@ -53,21 +52,54 @@ chuckJoke = () => {
         icon_emoji: ':laughing:'
       }
 
-      bot.postMessageToChannel('general', 
-        joke, 
-        params
+      bot.postMessageToChannel(
+        'general', 
+        `Ok, get this... ${joke}`, 
+        {}
       );
     }
-
   )
 }
 
-// Yo Mama
-yoMama = () => {
+// Tell a Yo Mama
+yoMamaJoke = () => {
+  const url = 'http://api.yomomma.info';
+  axios.get(url).then(res => {
+    const joke = res.data.joke;
 
+    bot.postMessageToChannel(
+      'general',
+      `Alright, you asked for it... ${joke}`,
+      {}
+    )
+  })
+}
+
+// Tell a random joke
+randomJoke = () => {
+  const rand = Math.floor(Math.random() * 2) + 1;
+  if (rand === 1) {
+    chuckJoke();
+  } else if (rand === 2) {
+    yoMamaJoke();
+  }
+}
+
+// Show help text
+runHelp = () => {
+  const params = {
+    icon_emoji: ':question:'
+  }
+
+  const text = `Type @jokebot with either "chucknorris", "yomama", or "random" to make jokebot tell a joke!`;
+  bot.postMessageToChannel(
+    'general', 
+    text, 
+    params
+  );
 }
 
 // Random Comment
 randomComment = () => {
-
+  // TODO
 }
